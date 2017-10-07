@@ -1,0 +1,96 @@
+﻿@model ProjetoWebBibliotecaDeFilme.ViewModel.Idiomas.IdiomaIndexViewModel
+
+@{
+    ViewBag.Title = "Lista de idiomas Cadastrados";
+}
+
+<h2>Lista de Idiomas</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(x => x.Descricao, new { @class = "control-label" })
+            @Html.TextBoxFor(x => x.Descricao, new { @class = "form-control", id = "inputNome" })
+        </div>
+    </div>
+
+    <div class="row" id="tabelaIdiomas">
+        @{ Html.RenderPartial("_idioma_Tabela", Model.Itens); }
+    </div>
+}
+
+@Html.Partial("_ModalConfirmacao")
+@Html.Partial("_ModalResultado")
+
+@section scripts{
+    <script>
+        var _idIdioma = "";
+
+        $.blockUI({ message: '<img src="../../carregando.gif" />' });
+
+        function abreConfirmacaoExclusao(idIdioma) {
+            _idIdioma = idIdioma;
+            AddMensagemConfirmacao("Deseja Excluir " + idIdioma + "  ?");
+            $("#modalMensagensConfirmacao").modal();
+        }
+
+        function bindTabela() {
+            $(".btnExcluir").on("click", function () {
+                _idIdioma = $(this).prop('id');
+                abreConfirmacaoExclusao(_idIdioma);
+            });
+        }
+
+        $("#btnConfirmacaoSim").on("click", function () {
+
+            $.blockUI({ message: '<img src="../../carregando.gif" />' });
+
+            ExcluirIdioma(_idIdioma);
+        });
+
+        var _nomeIdioma = $("#inputNome");
+        var _tabelaIdioma = $("#tabelaIdiomas");
+
+        _nomeIdioma.on("keyup", function () {
+            $.blockUI({ message: '<img src="../../carregando.gif" />' });
+            var texto = _nomeIdioma.val();
+            if (texto.length > 3) {
+                CarregaTabelaIdioma(_nomeIdioma.val());
+            }
+            else { CarregaTabelaIdioma("") }
+        });
+
+        $(document).ready(function () {
+            CarregaTabelaIdioma("");
+        });
+
+        function CarregaTabelaIdioma(idioma) {
+            var url = '@Url.Action("BuscarItensIdiomas", "Idioma")';
+          var parametros = { nome: idioma };
+          _tabelaIdioma.load(url, parametros);
+
+          setTimeout(function () {
+              $.unblockUI();
+              bindTabela();
+          }, 500);
+      }
+
+    function ExcluirIdioma(idIdioma)
+        {
+            var urlDestino = '@Url.Action("Excluir", "Idioma")';
+
+            $.ajax({
+                url: urlDestino,
+                method: "POST",
+                data: { id: idIdioma },
+                success: function (resposta) {
+                    PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                    $("#modalMensagens").modal();
+                    CarregaTabelaIdioma();
+                    $.unblockUI();
+                }
+            });
+        }
+    </script>
+}

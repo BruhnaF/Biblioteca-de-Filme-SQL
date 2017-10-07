@@ -1,0 +1,48 @@
+﻿<!-- Modal -->
+<div id="modalMensagens" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="modalTituloResultado"></h4>
+            </div>
+            <div class="modal-body">
+                <p id="paragrafoMensagem"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // Preenche o Modal.
+    function PreencherModal(titulo, mensagem) {
+        TituloModal(titulo);
+        $("#paragrafoMensagem").html(mensagem);
+    }
+
+    // Define o Titulo do Modal.
+    function TituloModal(indice) {
+        switch (indice) {
+            case 0:
+                $("#modalTituloResultado").text("Alerta");
+                break;
+            case 1:
+                $("#modalTituloResultado").text("Erro");
+                break;
+            case 2:
+                $("#modalTituloResultado").text("Informacao");
+                break;
+            case 3:
+                $("#modalTituloResultado").text("Sucesso");
+                break;
+            default:
+                $("#modalTituloResultado").text("Mensagem");
+        }
+    }
+</script>

@@ -1,0 +1,92 @@
+﻿@model ProjetoWebBibliotecaDeFilme.ViewModel.Generos.GeneroIndexViewModel
+
+@{
+    ViewBag.Title = "Lista de Generos Cadastrados";
+}
+
+<h2>Lista de Generos</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(x => x.Descricao, new { @class = "control-label" })
+            @Html.TextBoxFor(x => x.Descricao, new { @class = "form-control", id = "inputNome" })
+        </div>
+    </div>
+
+    <div class="row" id="tabelaGeneros">
+        @{ Html.RenderPartial("_genero_Tabela", Model.Itens); }
+    </div>
+}
+
+@Html.Partial("_ModalConfirmacao")
+@Html.Partial("_ModalResultado")
+
+@section scripts{
+    <script>
+        var _generoId = "";
+
+        $(document).ready(function () {
+            CarregaTabelaGenero("");
+        });
+
+        $.blockUI({ message: '<img src = "../../carregando.gif" />'});
+
+        function abreConfirmacaoExclusao(generoId) {
+            _generoId = generoId;
+            AddMensagemConfirmacao("Deseja Excluir " + generoId + "?");
+            $("#modalMensagensConfirmacao").modal();
+        }
+
+        function bindTabela() {
+            $(".btnExcluir").on("click", function () {
+                _generoId = $(this).prop('id');
+                abreConfirmacaoExclusao(_generoId);
+            });
+        }
+
+        $("#btnConfirmacaoSim").on("click", function () {
+            $.blockUI({ message: '<img src="../../carregando.gif" />' });
+            ExcluirGenero(_generoId);
+        });
+
+        var _nomeGenero = $("#inputNome");
+        var _tabelaGenero = $("#tabelaGeneros");
+
+        _nomeGenero.on("keyup", function () {
+            $.blockUI({ message: '<img src = "../../carregando.gif" />' });
+            var texto = _nomeGenero.val();
+            if (texto.length > 3) {
+                CarregaTabelaGenero(_nomeGenero.val());
+            }
+            else { CarregaTabelaGenero("") }
+        });
+
+
+        function CarregaTabelaGenero(genero){
+            var url = '@Url.Action("BuscarItensGeneros", "Genero")';
+            var parametro = { nome: genero };
+            _tabelaGenero.load(url, parametro);
+            setTimeout(function () {
+                $.unblockUI();
+                bindTabela();
+            }, 500);
+        }
+
+        function ExcluirGenero(idGenero) {
+            var urlDestino = '@Url.Action("Excluir", "Genero")';
+            $.ajax({
+                url: urlDestino,
+                method: "POST",
+                data: { id: idGenero },
+                success: function (resposta) {
+                    PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                    $("#modalMensagens").modal();
+                    CarregaTabelaGenero();
+                    $.unblockUI();
+                }
+            });
+        }
+    </script>
+}

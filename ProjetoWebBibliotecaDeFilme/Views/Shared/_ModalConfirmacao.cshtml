@@ -1,0 +1,28 @@
+﻿<!-- Modal -->
+<div id="modalMensagensConfirmacao" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="modalTitulo">Confirmação</h4>
+            </div>
+            <div class="modal-body">
+                <p id="paragrafoMensagemConfirmacao"> </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnConfirmacaoSim" class="btn btn-success" data-dismiss="modal">Sim</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Não</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    function AddMensagemConfirmacao(mensagem)
+    {
+        $("#paragrafoMensagemConfirmacao").html(mensagem);
+    }
+</script>

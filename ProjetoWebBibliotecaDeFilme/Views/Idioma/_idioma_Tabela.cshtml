@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ProjetoWebBibliotecaDeFilme.ViewModel.Idiomas.Idioma_Item_TabelaViewModel>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th colspan="2">Opções</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            foreach (var item in Model.ToList())
+            {
+                <tr>
+                    <td>@item.IdiomaId</td>
+                    <td>@item.Descricao</td>
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", "Idioma", new { id = item.IdiomaId },
+                        new { @class = "btn btn-primary" })
+                    </td>
+                    <td>
+                        <button type = "button" class="btn btn-primary btnExcluir" id="@item.IdiomaId">
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="2">Não possui Idiomas Cadastrados.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

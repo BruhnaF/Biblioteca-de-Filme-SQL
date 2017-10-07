@@ -1,0 +1,62 @@
+﻿@model ProjetoWebBibliotecaDeFilme.ViewModel.Idiomas.IdiomaViewModel
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar Idioma</h2>
+
+@using (Html.BeginForm("Editar","Editar", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.IdiomaId)
+
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(x => x.IdiomaId, new { @class = "control-label" })
+            @Html.TextBoxFor(x => x.IdiomaId, new { @class = "form-control", id = "codigoIdioma", @readonly = true })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(x => x.Descricao, new { @class = "control-label" })
+            @Html.TextBoxFor(x => x.Descricao, new { @class = "form-control", id = "nomeIdioma" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" id="btnSalvar">Editar</button>
+            @Html.ActionLink("Voltar", "Index", "Idioma", new { @class = "btn btn-primary" })
+        </div>
+    </div>
+}
+@Html.Partial("_ModalResultado")
+
+@section scripts
+{
+    <script>
+        $("#btnSalvar").on("click", function () {
+            var campos = { IdiomaId: $("#codigoIdioma").val(), Descricao: $("#nomeIdioma").val() };
+            $.blockUI({ message: '<img src="../../carregando.gif" />' });
+
+            EditarIdioma(campos);
+        });
+
+        // Editar Idiomas.
+        function EditarIdioma(campos)
+        {
+            var urlDestino = '@Url.Action("Editar", "Idioma")';
+
+            $.ajax({
+                url: urlDestino,
+                method: "POST",
+                data: campos,
+                success: function (resposta) {
+                    PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                    $("#modalMensagens").modal();
+                    $.unblockUI();
+                }
+
+            });
+        }
+    </script>
+}

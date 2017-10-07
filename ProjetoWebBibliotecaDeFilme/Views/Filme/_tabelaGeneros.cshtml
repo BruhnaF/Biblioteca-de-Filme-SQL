@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ProjetoWebBibliotecaDeFilme.ViewModel.Generos.GeneroViewModel>
+
+@if (Model.ToList().Any())
+{
+    <div class="row col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Generos Adicionados ao Filme</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ToList().Any())
+                {
+                    foreach (var item in Model.ToList())
+                    {
+                        <tr>
+                            <td class="col-md-11">@item.Descricao</td>
+                            <td class="col-md-1">
+                                <button class="btn btn-danger" type="button"
+                                        title="Remover @item.Descricao"
+                                        onclick="RemoverGenero('@item.GeneroId')">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

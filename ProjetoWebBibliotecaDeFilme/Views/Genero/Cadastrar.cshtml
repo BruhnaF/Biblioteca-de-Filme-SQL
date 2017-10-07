@@ -1,0 +1,57 @@
+﻿@model ProjetoWebBibliotecaDeFilme.ViewModel.Generos.GeneroViewModel
+
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Cadastrar Genero</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{   
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(x => x.Descricao, new { @class = "control-label" })
+            @Html.TextBoxFor(x => x.Descricao, new { @class = "form-control", id = "inputDescricao" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit" id="btnSalvar">Salvar</button>
+            @Html.ActionLink("Voltar", "Index", "Genero", new { @class = "btn btn-primary" })
+        </div>
+    </div>
+}
+
+@Html.Partial("_ModalResultado")
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $("#btnSalvar").on("click", function (evento) {
+                $.blockUI({ message: '<img src="../../carregando.gif" />' });
+                var campos = { GeneroId: $("#inputCodigo").val(), Descricao: $("#inputDescricao").val() };
+
+                CadastrarGenero(campos);
+
+                evento.preventDefault();
+            });
+
+        function CadastrarGenero(campos)
+        {
+            var urlDestino = '@Url.Action("Cadastrar", "Genero")';
+
+            $.ajax({
+                url: urlDestino,
+                method: "POST",
+                data: campos,
+                success: function (resposta) {
+                    PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                    $("#modalMensagens").modal();
+                    $.unblockUI();
+                }
+            });
+        }
+        });
+    </script>
+}

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ProjetoWebBibliotecaDeFilme.ViewModel.NomesdoFilme.NomedoFilmeViewModel>
+
+@if (Model.ToList().Any())
+{
+    <div class="row col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome do Filme</th>
+                    <th>Idioma</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ToList())
+                {
+                    <tr>
+                        <td class="col-md-11">@item.Nome</td>
+                        <td class="col-md-11">@item.IdiomaId</td>
+                        <td class="col-md-1">
+                            <button class="btn btn-danger" type="button"
+                                    title="Remover @item.Nome"
+                                    onclick="RemoverNomeFilme('@item.Id', '@item.Nome', '@item.IdiomaId')">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

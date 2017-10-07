@@ -1,0 +1,300 @@
+﻿@model ProjetoWebBibliotecaDeFilme.ViewModel.Filmes.FilmeViewModel
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar Filme</h2>
+
+@using (Html.BeginForm("Editar", "Editar", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.FilmeId)
+    <div class="row col-md-12">
+        <div class="form-group col-md-4" style="margin-left: -23px">
+            @Html.LabelFor(x => x.FilmeId, new { @class = "control-label" })
+            @Html.TextBoxFor(x => x.FilmeId, new { @class = "form-control", id = "inputCodigo", @readonly = true })
+        </div>
+    </div>
+    <div class="row col-md-12">
+        <div class="form-group col-md-4" style="margin-left: -23px">
+            @Html.LabelFor(x => x.NomedoFilme, new { @class = "control-label" })
+            @Html.TextBoxFor(x => x.NomedoFilme, new { @class = "form-control", id = "inputNome" })
+        </div>
+        <div class="form-group col-md-4" style="margin:inherit">
+            @Html.LabelFor(x => x.IdiomaFilme, new { @class = "control-label" })
+            @Html.DropDownListFor(x => x.IdiomaFilme, Model.Idiomas, new { @class = "form-control", id = "ddlIdiomaFilme" })
+        </div>
+        <div class="col-md-4" style="padding: 23px; margin-left: -23px">
+            <button class="btn btn-primary" type="button" id="btnAddNomeFilme"> Adicionar NomeFilme </button>
+        </div>
+    </div>
+    <div class="row col-md-12">
+        <div class="form-group col-md-4" style="margin-left: -23px">
+            @Html.LabelFor(x => x.GeneroId, new { @class = "control-label" })
+            @Html.DropDownListFor(x => x.GeneroId, Model.Generos, new { @class = "form-control", id = "ddlGeneros" })
+        </div>
+        <div class="col-md-2" style="padding: 23px; margin-left: -23px">
+            <button class="btn btn-primary" type="button" id="btnAddGenero"> Adicionar Genero </button>
+        </div>
+        <div class="form-group col-md-4" style="margin-left: -23px">
+
+            @Html.LabelFor(x => x.IdiomaId, new { @class = "control-label" })
+            @Html.DropDownListFor(x => x.IdiomaId, Model.Idiomas, new { @class = "form-control", id = "ddlIdiomas" })
+        </div>
+        <div class="col-md-2" style="padding: 23px; margin-left: -23px">
+            <button class="btn btn-primary" type="button" id="btnAddIdioma"> Adicionar Idioma </button>
+        </div>
+    </div>
+    <div class="row col-md-12">
+        <div class="form-group col-md-4" style="margin-left: -23px">
+            <div id="tabelaNomedoFilme">
+                @Html.Partial("_tabelaNomedoFilme", new List<ProjetoWebBibliotecaDeFilme.ViewModel.NomesdoFilme.NomedoFilmeViewModel>())
+            </div>
+        </div>
+        <div class="form-group col-md-4" style="margin-left: -23px">
+            <div id="tabelaGeneros">
+                @Html.Partial("_tabelaGeneros", new List<ProjetoWebBibliotecaDeFilme.ViewModel.Generos.GeneroViewModel>())
+            </div>
+        </div>
+        <div class="form-group col-md-4" style="margin-left: -23px">
+            <div id="tabelaIdiomas">
+                @Html.Partial("_tabelaIdiomas", new List<ProjetoWebBibliotecaDeFilme.ViewModel.Idiomas.IdiomaViewModel>())
+            </div>
+        </div>
+    </div>
+        <div class="row col-md-12">
+            <div class="form-group col-md-12" style="margin-left: -23px">
+                @Html.LabelFor(x => x.Descricao, new { @class = "control-label" })
+                @Html.TextAreaFor(x => x.Descricao, new { @class = "form-control", id = "inputDescricao" })
+            </div>
+        </div>
+        <div class="row col-md-12">
+            <div class="form-group col-md-4" style="margin-left: -23px">
+                <button type="button" class="btn btn-primary" id="btnSalvar">Editar</button>
+                @Html.ActionLink("Voltar", "Index", "Filme", new { @class = "btn btn-primary" })
+            </div>
+        </div>
+}
+
+@Html.Partial("_ModalResultado")
+
+@section scripts
+{
+    <script>
+        var _codigoFilme = $("#inputCodigo");
+        var _descricaoFilme = $("#inputDescricao");
+        var _nomeFilme = $("#inputNome");
+
+        var _ddlGeneros = $("#ddlGeneros");
+        var _btnAddGenero = $("#btnAddGenero");
+
+        var _ddlIdiomas = $("#ddlIdiomas");
+        var _btnAddIdioma = $("#btnAddIdioma");
+
+        var _ddlIdiomaFilme = $("#ddlIdiomaFilme");
+        var _btnAddNomeFilme = $("#btnAddNomeFilme");
+
+        var _btnSalvar = $("#btnSalvar");
+
+        var _tabelaIdiomas = $("#tabelaIdiomas");
+        var _tabelaGeneros = $("#tabelaGeneros");
+        var _tabelaNomedoFilme = $("#tabelaNomedoFilme");
+
+        $(document).ready(function () {
+
+           var urlg = '@Url.Action("CarregarTabelaGenero", "Filme")';
+           _tabelaGeneros.load(urlg);
+
+            var urln = '@Url.Action("CarregarTabelaNomedoFilme")';
+            _tabelaNomedoFilme.load(urln);
+
+           var urli = '@Url.Action("CarregarTabelaIdioma", "Filme")';
+           _tabelaIdiomas.load(urli);
+
+        });
+
+        ///Ao clicar no botão para adicionar Nome do Filme ao Filme.
+        _btnAddNomeFilme.on("click", function (evento) {
+            var nomeFilme = _nomeFilme.val();
+            var idiomaSelecionado = _ddlIdiomaFilme.val();
+
+            if ((nomeFilme != null) && (idiomaSelecionado != null)) {
+                var urlDestino = '@Url.Action("AdicionarNomeFilme", "Filme")';
+                $.ajax({
+                    url: urlDestino,
+                    method: "POST",
+                    data: { idFilme: _codigoFilme.val(), nomeFilme: nomeFilme, idioma: idiomaSelecionado },
+                    success: function (resposta) {
+                        if (resposta.Resultado == false) {
+                            PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                            $("#modalMensagens").modal();
+                        }
+                        else {
+                            var url = '@Url.Action("CarregarTabelaNomedoFilme")';
+                            _tabelaNomedoFilme.load(url);
+                            PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                            $("#modalMensagens").modal();
+                        }
+                    }
+                    });
+            }
+            else {
+                PreencherModal(0, "Digite um Nome do Filme e Escolha um Idioma do Nome");
+                $("#modalMensagens").modal();
+            }
+
+            });
+
+        ///Ao clicar no botão para adicionar Genero ao Filme.
+            _btnAddGenero.on("click", function (evento) {
+
+                var generoSelecionado = _ddlGeneros.val();
+
+                if (generoSelecionado != "") {
+                    var urlDestino = '@Url.Action("AdicionarGenero", "Filme")';
+                    $.ajax({
+                        url: urlDestino,
+                        method: "POST",
+                        data: { codGenero: generoSelecionado },
+                        success: function (resposta) {
+                            if (resposta.Resultado == false) {
+                                PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                                $("#modalMensagens").modal();
+                            }
+                            else {
+                                var url = '@Url.Action("CarregarTabelaGenero", "Filme")';
+                                _tabelaGeneros.load(url);
+                                PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                                $("#modalMensagens").modal();
+                            }
+                        }
+                    });
+                }
+                else {
+                    PreencherModal(0, "Escolha um Genero");
+                    $("#modalMensagens").modal();
+                }
+
+                evento.preventDefault();
+            });
+
+        ///Ao clicar no botão para adicionar Idioma ao Filme.
+       _btnAddIdioma.on("click", function (evento) {
+
+        var idiomaSelecionado = _ddlIdiomas.val();
+
+        if (idiomaSelecionado != "") {
+            var urlDestino = '@Url.Action("AdicionarIdioma", "Filme")';
+            $.ajax({
+                url: urlDestino,
+                method: "POST",
+                data: { codIdioma: idiomaSelecionado },
+                success: function (resposta) {
+                    if (resposta.Resultado == false) {
+                        PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                        $("#modalMensagens").modal();
+                    }
+                    else {
+                        var url = '@Url.Action("CarregarTabelaIdioma", "Filme")';
+                        _tabelaIdiomas.load(url);
+                        PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                        $("#modalMensagens").modal();
+                    }
+                }
+            });
+        }
+        else {
+                PreencherModal(0, "Escolha um Idioma");
+                $("#modalMensagens").modal();
+             }
+                evento.preventDefault();
+       });
+
+        ///Ao clicar no botão para Remover Item Idioma da Lista de Generos do Filme.
+        function RemoverIdioma(codIdioma)
+        {
+            var urlAcao = '@Url.Action("RemoverIdiomaDaLista", "Filme")'
+            $.ajax({
+                url: urlAcao,
+                method: "POST",
+                data: { codIdioma: codIdioma },
+                success: function (resposta) {
+                     if (resposta.Resultado == false) {
+                        PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                        $("#modalMensagens").modal();
+                    }
+                    else
+                    {
+                         var url = '@Url.Action("CarregarTabelaIdioma", "Filme")';
+                         _tabelaIdiomas.load(url);
+                         PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                         $("#modalMensagens").modal();
+                    }
+                }
+            });
+        }
+
+        ///Ao clicar no botão para Remover Item Genero da Lista de Generos do Filme.
+        function RemoverGenero(codGenero)
+        {
+            var urlAcao = '@Url.Action("RemoverGeneroDaLista", "Filme")'
+            $.ajax({
+                url: urlAcao,
+                method: "POST",
+                data: { codGenero: codGenero },
+                success: function (resposta) {
+                     if (resposta.Resultado == false) {
+                        PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                        $("#modalMensagens").modal();
+                    }
+                    else
+                    {
+                        var url = '@Url.Action("CarregarTabelaGenero", "Filme")';
+                        _tabelaGeneros.load(url);
+                        PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                        $("#modalMensagens").modal();
+                    }
+                }
+            });
+        }
+
+         ///Ao clicar no botão para Remover Item Genero da Lista de Generos do Filme.
+        function RemoverNomeFilme(idNomeFilme, nomeFilme, idioma)
+        {
+            var urlAcao = '@Url.Action("RemoverNomeFilmeDaLista", "Filme")'
+            $.ajax({
+                url: urlAcao,
+                method: "POST",
+                data: { idNomeFilme: idNomeFilme, nomeFilme: nomeFilme, idioma: idioma},
+                success: function (resposta) {
+                     if (resposta.Resultado == false) {
+                        PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                        $("#modalMensagens").modal();
+                    }
+                    else
+                    {
+                         var url = '@Url.Action("CarregarTabelaNomedoFilme", "Filme")';
+                         _tabelaNomedoFilme.load(url);
+                        PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                        $("#modalMensagens").modal();
+                    }
+                }
+            });
+        }
+
+      ///Ao Clicar no botão Salvar Filme
+            _btnSalvar.on("click", function () {
+                var urlDestino = '@Url.Action("Editar", "Filme")';
+                var campos = { FilmeId: _codigoFilme.val(), Descricao: _descricaoFilme.val() };
+
+                $.ajax({
+                    url: urlDestino,
+                    method: "POST",
+                    data: campos,
+                    success: function (resposta) {
+                        PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                        $("#modalMensagens").modal();
+                    }
+                });
+            });
+    </script>
+}

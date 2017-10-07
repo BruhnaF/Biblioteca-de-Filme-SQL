@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ProjetoWebBibliotecaDeFilme.ViewModel.Generos.Genero_Item_TabelaViewModel>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th colspan="2">Opções</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            foreach (var item in Model.ToList())
+            {
+                <tr>
+                    <td>@item.GeneroId</td>
+                    <td>@item.Descricao</td>
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", "Genero", new { id = item.GeneroId},
+                        new { @class = "btn btn-primary" })
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary btnExcluir" id="@item.GeneroId">
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="2">Não possui Generos Cadastrados.</td>
+            </tr>
+        }
+    </tbody>
+</table>

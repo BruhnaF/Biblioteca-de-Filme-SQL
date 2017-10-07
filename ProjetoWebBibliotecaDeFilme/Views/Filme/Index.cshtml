@@ -1,0 +1,93 @@
+﻿@model ProjetoWebBibliotecaDeFilme.ViewModel.Filmes.FilmeIndexViewModel
+
+@{
+    ViewBag.Title = "Lista de Filmes Cadastrados";
+}
+
+<h2>Lista de Filmes</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(x => x.Nome, new { @class = "control-label" })
+            @Html.TextBoxFor(x => x.Nome, new { @class = "form-control", id = "inputNome" })
+        </div>
+    </div>
+
+    <div class="row" id="tabelaFilmes">
+        @{ Html.RenderPartial("_filme_Tabela", Model.Itens); }
+    </div>
+            }
+
+@Html.Partial("_ModalConfirmacao")
+@Html.Partial("_ModalResultado")
+
+@section scripts{
+    <script>
+        var _filmeId = "";
+        var _nomeFilme = $("#inputNome");
+        var _tabelaFilmes = $("#tabelaFilmes");
+
+        $(document).ready(function () {
+            CarregaTabelaFilme("");
+        });
+
+        $.blockUI({ message: '<img src="../../carregando.gif" />' });
+
+        function abreConfirmacaoExclusao(filmeId) {
+            _filmeId = filmeId;
+            AddMensagemConfirmacao("Deseja Excluir  o Filme ?");
+            $("#modalMensagensConfirmacao").modal();
+        }
+
+        function bindTabela() {
+            $(".btnExcluir").on("click", function () {
+                _filmeId = $(this).prop('id');
+                abreConfirmacaoExclusao(_filmeId);
+            });
+        }
+
+        $("#btnConfirmacaoSim").on("click", function () {
+
+            $.blockUI({ message: '<img src="../../carregando.gif" />' });
+
+            ExcluirFilme(_filmeId);
+        });
+
+        _nomeFilme.on("keyup", function () {
+            var texto = _nomeFilme.val();
+            if (texto.length > 3) {
+            $.blockUI({ message: '<img src="../../carregando.gif" />' });
+                CarregaTabelaFilme(_nomeFilme.val());
+            }
+            else { CarregaTabelaFilme("") }
+        });
+
+
+        function CarregaTabelaFilme(filme){
+            var url = '@Url.Action("BuscarItensFilmes", "Filme")';
+            var parametro = { nome: filme };
+            _tabelaFilmes.load(url, parametro);
+            setTimeout(function () {
+                $.unblockUI();
+                bindTabela();
+            }, 500);
+        }
+
+        function ExcluirFilme(idFilme) {
+            var urlDestino = '@Url.Action("Excluir", "Filme")';
+            $.ajax({
+                url: urlDestino,
+                method: "POST",
+                data: { id: idFilme },
+                success: function (resposta) {
+                    PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                    $("#modalMensagens").modal();
+                    CarregaTabelaFilme();
+                    $.unblockUI();
+                }
+            });
+        }
+    </script>
+}

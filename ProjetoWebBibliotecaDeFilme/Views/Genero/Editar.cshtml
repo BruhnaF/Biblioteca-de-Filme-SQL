@@ -1,0 +1,57 @@
+﻿@model ProjetoWebBibliotecaDeFilme.ViewModel.Generos.GeneroViewModel
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar Genero</h2>
+
+@using (Html.BeginForm("Editar", "Editar", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.GeneroId)
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(x => x.GeneroId, new { @class = "control-label" })
+            @Html.TextBoxFor(x => x.GeneroId, new { @class = "form-control", id = "codigoGenero", @readonly = true })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(x => x.Descricao, new { @class = "control-label" })
+            @Html.TextBoxFor(x => x.Descricao, new { @class = "form-control", id = "nomeGenero" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" id="btnSalvar">Editar</button>
+            @Html.ActionLink("Voltar", "Index", "Genero", new { @class = "btn btn-primary" })
+        </div>
+    </div>
+}
+@Html.Partial("_ModalResultado")
+
+@section scripts
+{
+    <script>
+        $("#btnSalvar").on("click", function () {
+            var campos = { GeneroId: $("#codigoGenero").val(), Descricao: $("#nomeGenero").val() };
+            $.blockUI({ message: '<img src="../../carregando.gif" />' });
+            EditarGenero(campos);
+        });
+
+        function EditarGenero(campos) {
+            var urlDestino = '@Url.Action("Editar", "Genero")';
+
+            $.ajax({
+                url: urlDestino,
+                method: "POST",
+                data: campos,
+                success: function (resposta) {
+                    PreencherModal(resposta.TipoMensagem, resposta.Mensagem);
+                    $("#modalMensagens").modal();
+                    $.unblockUI();
+                }
+            });
+        }
+    </script>
+}
