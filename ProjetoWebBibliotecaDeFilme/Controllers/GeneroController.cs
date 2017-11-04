@@ -15,14 +15,14 @@ namespace ProjetoWebBibliotecaDeFilme.Controllers
         /// <summary>
         /// Armazena Instancia de GeneroBLO.
         /// </summary>
-        private readonly GeneroBLO _generoBLO;
+        private readonly ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.BLL.GeneroBLO _generoBLONovo;
 
         /// <summary>
         /// Construtor Padrão.
         /// </summary>
         public GeneroController()
         {
-            _generoBLO = new GeneroBLO();
+            _generoBLONovo = new ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.BLL.GeneroBLO();
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace ProjetoWebBibliotecaDeFilme.Controllers
         [HttpPost]
         public ActionResult BuscarItensGeneros(string nome)
         {
-            var listaGeneros = _generoBLO.Listar();
+            var listaGeneros = _generoBLONovo.Listar();
 
             if (!string.IsNullOrEmpty(nome))
                 listaGeneros
@@ -82,25 +82,24 @@ namespace ProjetoWebBibliotecaDeFilme.Controllers
         [HttpPost]
         public ActionResult Cadastrar(GeneroViewModel view)
         {
-            var retorno = new RetornoMensagem();
-            var genero = new Genero();
+            var retorno = new RetornoMensagem();           
 
             try
             {
-                genero = new Genero()
+                var genero = new ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.Model.Genero
                 {
                     GeneroId = view.GeneroId,
                     Descricao = view.Descricao
                 };
 
-                _generoBLO.Salvar(genero);
+                _generoBLONovo.Salvar(genero);
 
                 retorno.Mensagem
                     = string.Format("Genero {0} Cadastrado com Sucesso. <br />", view.Descricao);
                 retorno.TipoMensagem = TipoMensagem.Sucesso;
                 retorno.Resultado = true;
             }
-            catch(ProjetoException ex)
+            catch(ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.Utils.ProjetoException ex)
             {
                 retorno.Mensagem = ex.Message;
                 retorno.TipoMensagem = TipoMensagem.Alerta;
@@ -123,7 +122,7 @@ namespace ProjetoWebBibliotecaDeFilme.Controllers
         [HttpGet]
         public ActionResult Editar(int id)
         {
-            var genero = _generoBLO.BuscarPorId(id);
+            var genero = _generoBLONovo.BuscarPorId(id);
             var view = new GeneroViewModel(genero);
             return View(view);
         }
@@ -139,20 +138,20 @@ namespace ProjetoWebBibliotecaDeFilme.Controllers
             var retorno = new RetornoMensagem();
             try
             {
-                var genero = new Genero()
+                var genero = new ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.Model.Genero
                 {
                     GeneroId = view.GeneroId,
                     Descricao = view.Descricao
                 };
 
-                _generoBLO.Editar(genero);
+                _generoBLONovo.Editar(genero);
 
                 retorno.Mensagem
                     = string.Format("Genero {0} - {1} Editado com Sucesso. <br />", view.GeneroId, view.Descricao);
                 retorno.TipoMensagem = TipoMensagem.Sucesso;
                 retorno.Resultado = true;
             }
-            catch(ProjetoException ex)
+            catch(ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.Utils.ProjetoException ex)
             {
                 retorno.Mensagem = ex.Message;
                 retorno.TipoMensagem = TipoMensagem.Alerta;
@@ -179,9 +178,9 @@ namespace ProjetoWebBibliotecaDeFilme.Controllers
             var retorno = new RetornoMensagem();
             try
             {
-                var generoMensagem = _generoBLO.BuscarPorId(id);
+                var generoMensagem = _generoBLONovo.BuscarPorId(id);
 
-                _generoBLO.Excluir(id);
+                _generoBLONovo.Excluir(id);
 
                 retorno.Mensagem
                    = string.Format("Genero {0} - {1} Excluido com Sucesso. <br />", generoMensagem.GeneroId, generoMensagem.Descricao);

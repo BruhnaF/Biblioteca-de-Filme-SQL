@@ -1,0 +1,14 @@
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.BLL\obj\Debug\Library.BibliotecadeFilme.BLL.csprojResolveAssemblyReference.cache
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.BLL\bin\Debug\Library.BibliotecadeFilme.BLL.dll
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.BLL\bin\Debug\Library.BibliotecadeFilme.BLL.pdb
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.BLL\bin\Debug\Library.BibliotecadeFilme.DAO.dll
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.BLL\bin\Debug\Library.BibliotecadeFilmes.Model.dll
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.BLL\bin\Debug\Library.BibliotecadeFilme.DAO.pdb
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.BLL\bin\Debug\Library.BibliotecadeFilmes.Model.pdb
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.BLL\obj\Debug\Library.BibliotecadeFilme.BLL.dll
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.BLL\obj\Debug\Library.BibliotecadeFilme.BLL.pdb
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.BLL\bin\Debug\ProjetoBibliotecaDeFilme.dll
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.BLL\bin\Debug\EntityFramework.dll
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.BLL\bin\Debug\ProjetoBibliotecaDeFilme.pdb
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.BLL\bin\Debug\ProjetoBibliotecaDeFilme.dll.config
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.BLL\bin\Debug\EntityFramework.xml

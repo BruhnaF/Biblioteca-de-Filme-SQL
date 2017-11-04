@@ -10,3 +10,15 @@ D:\Work\ProjetoBibliotecaDeFilme\ProjetoBibliotecaDeFilme\ProjetoBibliotecaDeFil
 D:\Work\ProjetoBibliotecaDeFilme\ProjetoBibliotecaDeFilme\ProjetoBibliotecaDeFilme\obj\Debug\ProjetoBibliotecaDeFilme.pdb
 D:\Work\ProjetoBibliotecaDeFilme\ProjetoBibliotecaDeFilme\ProjetoBibliotecaDeFilme\obj\Debug\ProjetoBibliotecaDeFilme.Migrations.AtualizacaoNomeFilmes.resources
 D:\Work\ProjetoBibliotecaDeFilme\ProjetoBibliotecaDeFilme\ProjetoBibliotecaDeFilme\obj\Debug\LibraryBibliotecaDeFilme.csproj.GenerateResource.Cache
+D:\Work\Biblioteca-de-Filme-SQL\ProjetoBibliotecaDeFilme\bin\Debug\ProjetoBibliotecaDeFilme.dll.config
+D:\Work\Biblioteca-de-Filme-SQL\ProjetoBibliotecaDeFilme\bin\Debug\ProjetoBibliotecaDeFilme.dll
+D:\Work\Biblioteca-de-Filme-SQL\ProjetoBibliotecaDeFilme\bin\Debug\ProjetoBibliotecaDeFilme.pdb
+D:\Work\Biblioteca-de-Filme-SQL\ProjetoBibliotecaDeFilme\bin\Debug\EntityFramework.dll
+D:\Work\Biblioteca-de-Filme-SQL\ProjetoBibliotecaDeFilme\bin\Debug\EntityFramework.SqlServer.dll
+D:\Work\Biblioteca-de-Filme-SQL\ProjetoBibliotecaDeFilme\bin\Debug\EntityFramework.xml
+D:\Work\Biblioteca-de-Filme-SQL\ProjetoBibliotecaDeFilme\bin\Debug\EntityFramework.SqlServer.xml
+D:\Work\Biblioteca-de-Filme-SQL\ProjetoBibliotecaDeFilme\obj\Debug\LibraryBibliotecaDeFilme.csprojResolveAssemblyReference.cache
+D:\Work\Biblioteca-de-Filme-SQL\ProjetoBibliotecaDeFilme\obj\Debug\ProjetoBibliotecaDeFilme.Migrations.AtualizacaoNomeFilmes.resources
+D:\Work\Biblioteca-de-Filme-SQL\ProjetoBibliotecaDeFilme\obj\Debug\LibraryBibliotecaDeFilme.csproj.GenerateResource.Cache
+D:\Work\Biblioteca-de-Filme-SQL\ProjetoBibliotecaDeFilme\obj\Debug\ProjetoBibliotecaDeFilme.dll
+D:\Work\Biblioteca-de-Filme-SQL\ProjetoBibliotecaDeFilme\obj\Debug\ProjetoBibliotecaDeFilme.pdb

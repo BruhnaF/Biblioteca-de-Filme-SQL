@@ -55,9 +55,9 @@
         var _tabelaGenero = $("#tabelaGeneros");
 
         _nomeGenero.on("keyup", function () {
-            $.blockUI({ message: '<img src = "../../carregando.gif" />' });
             var texto = _nomeGenero.val();
             if (texto.length > 3) {
+            $.blockUI({ message: '<img src = "../../carregando.gif" />' });
                 CarregaTabelaGenero(_nomeGenero.val());
             }
             else { CarregaTabelaGenero("") }

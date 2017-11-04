@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{14E26746-E7D5-410D-85FB-98567A400B9D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Library.BibliotecadeFilme.BLL</RootNamespace>
+    <AssemblyName>Library.BibliotecadeFilme.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FilmeBLO.cs" />
+    <Compile Include="FilmeGeneroBLO.cs" />
+    <Compile Include="FilmeIdiomaBLO.cs" />
+    <Compile Include="GeneroBLO.cs" />
+    <Compile Include="IdiomaBLO.cs" />
+    <Compile Include="NomedoFilmeBLO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Library.BibliotecadeFilme.DAO\Library.BibliotecadeFilme.DAL.csproj">
+      <Project>{156A4D45-EA5B-43D0-B5D0-11428FEC8BAB}</Project>
+      <Name>Library.BibliotecadeFilme.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Library.BibliotecadeFilmes.Model\Library.BibliotecadeFilme.Model.csproj">
+      <Project>{28761e71-7c80-46dc-8540-93e52e7efe90}</Project>
+      <Name>Library.BibliotecadeFilme.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjetoBibliotecaDeFilme\LibraryBibliotecaDeFilme.csproj">
+      <Project>{842A61CB-4956-426B-8E13-AC8074C726F7}</Project>
+      <Name>LibraryBibliotecaDeFilme</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

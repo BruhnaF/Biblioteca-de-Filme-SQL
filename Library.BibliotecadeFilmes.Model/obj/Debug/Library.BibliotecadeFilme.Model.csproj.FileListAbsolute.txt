@@ -1,0 +1,5 @@
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilmes.Model\bin\Debug\Library.BibliotecadeFilmes.Model.dll
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilmes.Model\bin\Debug\Library.BibliotecadeFilmes.Model.pdb
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilmes.Model\obj\Debug\Library.BibliotecadeFilme.Model.csprojResolveAssemblyReference.cache
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilmes.Model\obj\Debug\Library.BibliotecadeFilmes.Model.dll
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilmes.Model\obj\Debug\Library.BibliotecadeFilmes.Model.pdb

@@ -17,6 +17,12 @@ namespace ProjetoWebBibliotecaDeFilme.ViewModel.Idiomas
         /// Construtor recebendo o Idioma
         /// </summary>
         /// <param name="idioma"></param>
+        public IdiomaViewModel(ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.Model.Idioma idioma)
+        {
+            this.IdiomaId = idioma.IdiomaId;
+            this.Descricao = idioma.Descricao;
+        }
+
         public IdiomaViewModel(Idioma idioma)
         {
             this.IdiomaId = idioma.IdiomaId;

@@ -15,6 +15,12 @@ namespace ProjetoWebBibliotecaDeFilme.ViewModel.Generos
 
         }
 
+        public GeneroViewModel(ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.Model.Genero genero)
+        {
+            this.GeneroId = genero.GeneroId;
+            this.Descricao = genero.Descricao;
+        }
+
         /// <summary>
         /// Construtor Recebendo o Genero
         /// </summary>

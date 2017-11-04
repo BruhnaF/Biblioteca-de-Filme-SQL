@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryBibliotecaDeFilme", "ProjetoBibliotecaDeFilme\LibraryBibliotecaDeFilme.csproj", "{842A61CB-4956-426B-8E13-AC8074C726F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AplicacaoWebBibliotecaDeFilme", "ProjetoWebBibliotecaDeFilme\AplicacaoWebBibliotecaDeFilme.csproj", "{28209617-479A-489C-8D1D-045F386A40C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.BibliotecadeFilme.BLL", "Library.BibliotecadeFilme.BLL\Library.BibliotecadeFilme.BLL.csproj", "{14E26746-E7D5-410D-85FB-98567A400B9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.BibliotecadeFilme.DAL", "Library.BibliotecadeFilme.DAO\Library.BibliotecadeFilme.DAL.csproj", "{156A4D45-EA5B-43D0-B5D0-11428FEC8BAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.BibliotecadeFilme.Model", "Library.BibliotecadeFilmes.Model\Library.BibliotecadeFilme.Model.csproj", "{28761E71-7C80-46DC-8540-93E52E7EFE90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{28209617-479A-489C-8D1D-045F386A40C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28209617-479A-489C-8D1D-045F386A40C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28209617-479A-489C-8D1D-045F386A40C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14E26746-E7D5-410D-85FB-98567A400B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14E26746-E7D5-410D-85FB-98567A400B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14E26746-E7D5-410D-85FB-98567A400B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14E26746-E7D5-410D-85FB-98567A400B9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{156A4D45-EA5B-43D0-B5D0-11428FEC8BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{156A4D45-EA5B-43D0-B5D0-11428FEC8BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{156A4D45-EA5B-43D0-B5D0-11428FEC8BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{156A4D45-EA5B-43D0-B5D0-11428FEC8BAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28761E71-7C80-46DC-8540-93E52E7EFE90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28761E71-7C80-46DC-8540-93E52E7EFE90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28761E71-7C80-46DC-8540-93E52E7EFE90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28761E71-7C80-46DC-8540-93E52E7EFE90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -68,6 +68,37 @@ namespace ProjetoWebBibliotecaDeFilme.ViewModel.Filmes
             ListaNomedoFilme = new List<NomedoFilmeViewModel>();
         }
 
+
+        /// <summary>
+        /// Construtor Recebendo Filme.
+        /// </summary>
+        /// <param name="filme"></param>
+        public FilmeViewModel(ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.Model.Filme filme)
+        {
+            this.FilmeId = filme.FilmeId;
+            this.Descricao = filme.Descricao;
+
+            var listaPadrao = new SelectListItem() { Text = "Selecione", Value = string.Empty };
+
+            Generos = new List<SelectListItem>
+            {
+                listaPadrao
+            };
+            ListaGeneros = new List<GeneroViewModel>();
+
+            Idiomas = new List<SelectListItem>
+            {
+                listaPadrao
+            };
+            ListaIdiomas = new List<IdiomaViewModel>();
+
+            NomesdoFilme = new List<SelectListItem>
+            {
+                listaPadrao
+            };
+            ListaNomedoFilme = new List<NomedoFilmeViewModel>();
+        }
+
         /// <summary>
         /// Representa FilmeId
         /// </summary>

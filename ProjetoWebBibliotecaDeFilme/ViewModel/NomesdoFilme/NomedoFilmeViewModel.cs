@@ -11,6 +11,20 @@ namespace ProjetoWebBibliotecaDeFilme.ViewModel.NomesdoFilme
         public NomedoFilmeViewModel()
         {
             this.Idioma = new Idioma();
+            this.IdiomaNovo = new ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.Model.Idioma();
+        }
+
+        /// <summary>
+        /// Construtor recebendo NomedoFilme
+        /// </summary>
+        /// <param name="nomedoFilme"></param>
+        public NomedoFilmeViewModel(ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.Model.NomedoFilme nomedoFilme)
+        {
+            this.NomedoFilmeId = nomedoFilme.NomedoFilmeId;
+            this.Nome = nomedoFilme.Nome;
+            this.IdiomaId = nomedoFilme.IdiomaId;
+           // this.IdiomaNovo = nomedoFilme.Idioma;
+            this.FilmeId = nomedoFilme.FilmeId;
         }
 
         /// <summary>
@@ -19,7 +33,7 @@ namespace ProjetoWebBibliotecaDeFilme.ViewModel.NomesdoFilme
         /// <param name="nomedoFilme"></param>
         public NomedoFilmeViewModel(NomedoFilme nomedoFilme)
         {
-            this.Id = nomedoFilme.Id;
+            this.NomedoFilmeId = nomedoFilme.Id;
             this.Nome = nomedoFilme.Nome;
             this.IdiomaId = nomedoFilme.IdiomaId;
             this.Idioma = nomedoFilme.Idioma;            
@@ -28,7 +42,9 @@ namespace ProjetoWebBibliotecaDeFilme.ViewModel.NomesdoFilme
         /// <summary>
         /// Representa o NomedoFilmeId
         /// </summary>
-        public int Id { get; set; }
+        public int NomedoFilmeId { get; set; }
+
+        public int FilmeId { get; set; }
 
         /// <summary>
         /// Representa o Nome
@@ -44,5 +60,8 @@ namespace ProjetoWebBibliotecaDeFilme.ViewModel.NomesdoFilme
         /// Representa o Idioma
         /// </summary>
         public Idioma Idioma { get; set; }
+
+        public ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.Model.Idioma IdiomaNovo { get; set; }
+
     }
 }

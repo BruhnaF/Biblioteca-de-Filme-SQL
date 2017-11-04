@@ -15,14 +15,15 @@ namespace ProjetoWebBibliotecaDeFilme.Controllers
         /// <summary>
         /// Armazena Instancia de IdiomaBLO.
         /// </summary>
-        private readonly IdiomaBLO _idiomaBLO;
+        
+        private readonly ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.BLL.IdiomaBLO _idiomaBLONovo;
 
         /// <summary>
         /// Contrutor Padrao.
         /// </summary>
         public IdiomaController()
         {
-            _idiomaBLO = new IdiomaBLO();
+            _idiomaBLONovo = new ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.BLL.IdiomaBLO();
         }
 
         /// <summary>
@@ -44,7 +45,7 @@ namespace ProjetoWebBibliotecaDeFilme.Controllers
         [HttpPost]
         public ActionResult BuscarItensIdiomas(string nome)
         {
-            var listaIdiomas = _idiomaBLO.Listar();
+            var listaIdiomas = _idiomaBLONovo.Listar();
 
             if (!string.IsNullOrEmpty(nome))
                 listaIdiomas
@@ -87,13 +88,13 @@ namespace ProjetoWebBibliotecaDeFilme.Controllers
 
             try
             {
-                var idioma = new Idioma()
+                var idioma = new ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.Model.Idioma
                 {
                     IdiomaId = view.IdiomaId,
                     Descricao = view.Descricao
                 };
 
-                _idiomaBLO.Salvar(idioma);
+                _idiomaBLONovo.Salvar(idioma);
 
                 retorno.Mensagem
                     = string.Format("Idioma {0} - {1} Cadastrado com Sucesso. <br />", view.IdiomaId, view.Descricao);
@@ -101,7 +102,7 @@ namespace ProjetoWebBibliotecaDeFilme.Controllers
                 retorno.Resultado = true;
 
             }
-            catch (ProjetoException ex)
+            catch (ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.Utils.ProjetoException ex)
             {
                 retorno.Mensagem = ex.Message;
                 retorno.TipoMensagem = TipoMensagem.Alerta;
@@ -125,7 +126,7 @@ namespace ProjetoWebBibliotecaDeFilme.Controllers
         [HttpGet]
         public ActionResult Editar(string id)
         {
-            var idioma = _idiomaBLO.BuscarPorId(id);
+            var idioma = _idiomaBLONovo.BuscarPorId(id);
             var view = new IdiomaViewModel(idioma);
             return View(view);
         }
@@ -141,20 +142,20 @@ namespace ProjetoWebBibliotecaDeFilme.Controllers
             var retorno = new RetornoMensagem();
             try
             {
-                var idioma = new Idioma()
+                var idioma = new ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.Model.Idioma
                 {
                     IdiomaId = view.IdiomaId,
                     Descricao = view.Descricao
                 };
 
-                _idiomaBLO.Editar(idioma);
+                _idiomaBLONovo.Editar(idioma);
 
                 retorno.Mensagem
                     = string.Format("Idioma {0} - {1} Editado com Sucesso. <br />", view.IdiomaId, view.Descricao);
                 retorno.TipoMensagem = TipoMensagem.Sucesso;
                 retorno.Resultado = true;
             }
-            catch (ProjetoException ex)
+            catch (ProjetoBibliotecaDeFilme.Library.BibliotecadeFilme.Utils.ProjetoException ex)
             {
                 retorno.Mensagem = ex.Message;
                 retorno.TipoMensagem = TipoMensagem.Alerta;
@@ -181,9 +182,9 @@ namespace ProjetoWebBibliotecaDeFilme.Controllers
             var retorno = new RetornoMensagem();
             try
             {
-                var idiomaMensagem = _idiomaBLO.BuscarPorId(id);
+                var idiomaMensagem = _idiomaBLONovo.BuscarPorId(id);
 
-                _idiomaBLO.Excluir(id);
+                _idiomaBLONovo.Excluir(id);
 
                 retorno.Mensagem
                    = string.Format("Idioma {0} - {1} Excluido com Sucesso. <br />", idiomaMensagem.IdiomaId, idiomaMensagem.Descricao);

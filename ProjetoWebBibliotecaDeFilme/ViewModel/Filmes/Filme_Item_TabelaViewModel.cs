@@ -14,5 +14,7 @@ namespace ProjetoWebBibliotecaDeFilme.ViewModel.Filmes
         /// Representa Descrição.
         /// </summary>
         public List<NomedoFilmeViewModel> listaNomeFilme { get; set; }
+        public List<NomedoFilmeViewModel> listaNomeFilmeNovo { get; set; }
+
     }
 }

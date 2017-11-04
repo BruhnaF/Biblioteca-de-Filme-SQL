@@ -20,7 +20,7 @@ namespace ProjetoBibliotecaDeFilme.DAL
         /// <summary>
         /// Construtor para bloquear a Inicialização sem parametro.
         /// </summary>
-        private IdiomaDAO() { }
+        public IdiomaDAO() { }
 
         /// <summary>
         /// Construtor Padrão.

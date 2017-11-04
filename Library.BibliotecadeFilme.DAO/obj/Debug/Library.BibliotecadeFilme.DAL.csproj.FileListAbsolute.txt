@@ -1,0 +1,7 @@
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.DAO\bin\Debug\Library.BibliotecadeFilme.DAO.dll
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.DAO\bin\Debug\Library.BibliotecadeFilme.DAO.pdb
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.DAO\bin\Debug\Library.BibliotecadeFilmes.Model.dll
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.DAO\bin\Debug\Library.BibliotecadeFilmes.Model.pdb
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.DAO\obj\Debug\Library.BibliotecadeFilme.DAL.csprojResolveAssemblyReference.cache
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.DAO\obj\Debug\Library.BibliotecadeFilme.DAO.dll
+D:\Work\Biblioteca-de-Filme-SQL\Library.BibliotecadeFilme.DAO\obj\Debug\Library.BibliotecadeFilme.DAO.pdb

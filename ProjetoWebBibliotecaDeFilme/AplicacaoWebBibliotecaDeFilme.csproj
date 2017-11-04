@@ -237,6 +237,14 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Library.BibliotecadeFilme.BLL\Library.BibliotecadeFilme.BLL.csproj">
+      <Project>{14e26746-e7d5-410d-85fb-98567a400b9d}</Project>
+      <Name>Library.BibliotecadeFilme.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Library.BibliotecadeFilmes.Model\Library.BibliotecadeFilme.Model.csproj">
+      <Project>{28761e71-7c80-46dc-8540-93e52e7efe90}</Project>
+      <Name>Library.BibliotecadeFilme.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProjetoBibliotecaDeFilme\LibraryBibliotecaDeFilme.csproj">
       <Project>{842a61cb-4956-426b-8e13-ac8074c726f7}</Project>
       <Name>LibraryBibliotecaDeFilme</Name>

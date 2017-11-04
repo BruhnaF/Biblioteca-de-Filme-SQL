@@ -53,9 +53,9 @@
         var _tabelaIdioma = $("#tabelaIdiomas");
 
         _nomeIdioma.on("keyup", function () {
-            $.blockUI({ message: '<img src="../../carregando.gif" />' });
             var texto = _nomeIdioma.val();
             if (texto.length > 3) {
+            $.blockUI({ message: '<img src="../../carregando.gif" />' });
                 CarregaTabelaIdioma(_nomeIdioma.val());
             }
             else { CarregaTabelaIdioma("") }
